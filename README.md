@@ -58,19 +58,62 @@ Kami sangat menghargai kontribusi dari komunitas. Untuk panduan lengkap tentang 
 Struktur project dibuat modular dan rapi untuk memisahkan tanggung jawab (routes, data, middleware, utils).
 
 ```
-P5-CRUD-REST-230104040212
-├── evidence
-│ ├── delete.png
-│ ├── get-all.png
-│ ├── get-by-id.png
-│ ├── post.png
-│ └── put.png
-├── node_modules
+P6-RESTFUL-BESTPRACTICE-230104040212/
+├── node_modules/
+├── src/
+│   ├── controllers/
+│   ├── data/
+│   │   └── products.data.js
+│   ├── evidence/
+│   │   ├── 500 Internal Error.png
+│   │   ├── DELETE id 1.png
+│   │   ├── GET ALL.png
+│   │   ├── GET by ID.png
+│   │   ├── Health.png
+│   │   ├── PATCH id 1.png
+│   │   ├── POST new Product.png
+│   │   ├── POST No Name.png
+│   │   ├── POST No Price.png
+│   │   ├── PUT id 1.png
+│   │   └── PUT No Name.png
+│   ├── middlewares/
+│   │   ├── errorHandler.js
+│   │   └── validateProduct.js
+│   ├── routes/
+│   │   └── products.routes.js
+│   ├── utils/
+│   │   └── apiResponse.js
+│   └── app.js
 ├── LICENSE
 ├── package-lock.json
 ├── package.json
-├── README.md
-└── server.js
+└── README.md
 ```
 
 ---
+### Desain Endpoint (RESTful Best Practices)
+Semua endpoint beroperasi di bawah *base path* `/api/`.
+
+| No | Endpoint | Method | Deskripsi | Status Code | Body Contoh |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 1 | `/api/products` | GET | Ambil semua produk | `200` | - |
+| 2 | `/api/products/:id` | GET | Ambil 1 produk berdasarkan ID | `200 / 404` | - |
+| 3 | `/api/products` | POST | Tambah produk baru | `201 / 400` | `{"name": "Keyboard", "price": 250000}` |
+| 4 | `/api/products/:id` | PUT | Update penuh data produk | `200 / 400 / 404` | `{"name": "Laptop X", "price": 12000000}` |
+| 5 | `/api/products/:id` | PATCH | Update sebagian data produk | `200 / 404` | `{"price": 9900000}` |
+| 6 | `/api/products/:id` | DELETE | Hapus produk | `200 / 404` | - |
+| 7 | `/api/health` | GET | Cek status API | `200` | - |
+
+---
+
+### Implementasi 7 Prinsip RESTful
+
+Berikut adalah penerapan 7 Prinsip RESTful dalam praktikum ini:
+
+1.  **Resource-Oriented URI:** Menggunakan **kata benda jamak** sebagai *resource*, seperti `/products`, bukan menggunakan kata kerja atau URI yang tidak jelas.
+2.  **Proper HTTP Methods:** Menggunakan **GET** (baca), **POST** (buat), **PUT/PATCH** (ubah), dan **DELETE** (hapus) sesuai maknanya untuk operasi CRUD.
+3.  **Stateless Communication:** Server **tidak menyimpan *state* sesi** antar-request, semua data yang dibutuhkan dikirim lengkap di tiap request.
+4.  **Consistent HTTP Status Codes:** Menggunakan kode status yang benar: **200/201** (sukses), **400** (salah request/validasi), **404** (data tidak ditemukan), **500** (error server).
+5.  **Content Negotiation & Representations (JSON):** Response default menggunakan format **JSON** (`application/json`) yang konsisten, terstruktur (`{ success, message, data }`), dan rapi.
+6.  **Validation & Error Handling:** Menerapkan **middleware validasi** (`validateProduct.js`) pada POST dan PUT untuk menolak request tanpa field wajib (`name`, `price`) dengan status **400 Bad Request**. Serta menerapkan **middleware error global** (`errorHandler.js`) untuk menangkap error 500 tanpa *crash*.
+7.  **Discoverability / Documentation-Friendly:** Endpoint mudah ditebak dan dilengkapi dengan **dokumentasi** (tabel ini) serta *health check* endpoint (`/api/health`).
