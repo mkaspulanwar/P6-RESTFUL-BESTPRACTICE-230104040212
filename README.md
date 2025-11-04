@@ -1,5 +1,4 @@
-# P6-RESTful-BestPractices-NimAnda
-## Implementasi RESTful API Best Practices (Express.js)
+# P6-RESTFUL-BESTPRACTICE-230104040212: Implementasi RESTFUL API Best Practices (Express.js)
 
 Praktikum ini bertujuan untuk mengimplementasikan **7 Prinsip RESTful API Best Practices** dalam sebuah Web Service sederhana menggunakan **Express.js** yang mencakup fungsionalitas CRUD lengkap, validasi input, dan penanganan error terstandar.
 
