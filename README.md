@@ -1,5 +1,17 @@
 # P6-RESTFUL-BESTPRACTICE-230104040212: Implementasi RESTFUL API Best Practices (Express.js)
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Node.js-18%2B-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js 18+">
+  <img src="https://img.shields.io/badge/Express.js-Backend-000000?style=flat-square&logo=express&logoColor=white" alt="Express.js">
+  <img src="https://img.shields.io/badge/npm-Package%20Manager-CB3837?style=flat-square&logo=npm&logoColor=white" alt="npm">
+  <img src="https://img.shields.io/badge/Nodemon-Dev%20Watcher-76D04B?style=flat-square&logo=nodemon&logoColor=white" alt="Nodemon (Dev Dependency)">
+  <img src="https://img.shields.io/badge/morgan-Logging%20Request-3A3A3A?style=flat-square&logo=express&logoColor=white" alt="Morgan (Request Logger)">
+  <img src="https://img.shields.io/badge/VS%20Code-Editor-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" alt="VS Code">
+  <img src="https://img.shields.io/badge/Postman%2FThunder%20Client-Testing%20Tool-FF6C37?style=flat-square&logo=postman&logoColor=white" alt="Postman">
+  <img src="https://img.shields.io/badge/validateProduct.js-Middleware-6699CC?style=flat-square" alt="validateProduct.js Middleware">
+  <img src="https://img.shields.io/badge/errorHandler.js-Middleware-CC6666?style=flat-square" alt="errorHandler.js Middleware">
+</p>
+
 Praktikum ini bertujuan untuk mengimplementasikan **7 Prinsip RESTful API Best Practices** dalam sebuah Web Service sederhana menggunakan **Express.js** yang mencakup fungsionalitas CRUD lengkap, validasi input, dan penanganan error terstandar.
 
 ---
@@ -24,7 +36,6 @@ Kami sangat menghargai kontribusi dari komunitas. Untuk panduan lengkap tentang 
 </p>
 
 ---
-
 
 ### Detail Praktikum
 | Aspek | Deskripsi |
@@ -91,6 +102,7 @@ P6-RESTFUL-BESTPRACTICE-230104040212/
 ```
 
 ---
+
 ### Desain Endpoint (RESTful Best Practices)
 Semua endpoint beroperasi di bawah *base path* `/api/`.
 
@@ -106,6 +118,23 @@ Semua endpoint beroperasi di bawah *base path* `/api/`.
 
 ---
 
+### Cara Menjalankan Proyek (Getting Started)
+
+Pastikan sistem Anda sudah terinstal:
+* **Node.js** versi 18 atau yang lebih baru.
+* **npm** (Node Package Manager).
+
+```bash
+npm install
+npm run dev
+
+Buka di browser atau Postman:
+
+http://localhost:3000/api/products
+```
+
+---
+
 ### Implementasi 7 Prinsip RESTful
 
 Berikut adalah penerapan 7 Prinsip RESTful dalam praktikum ini:
@@ -117,3 +146,18 @@ Berikut adalah penerapan 7 Prinsip RESTful dalam praktikum ini:
 5.  **Content Negotiation & Representations (JSON):** Response default menggunakan format **JSON** (`application/json`) yang konsisten, terstruktur (`{ success, message, data }`), dan rapi.
 6.  **Validation & Error Handling:** Menerapkan **middleware validasi** (`validateProduct.js`) pada POST dan PUT untuk menolak request tanpa field wajib (`name`, `price`) dengan status **400 Bad Request**. Serta menerapkan **middleware error global** (`errorHandler.js`) untuk menangkap error 500 tanpa *crash*.
 7.  **Discoverability / Documentation-Friendly:** Endpoint mudah ditebak dan dilengkapi dengan **dokumentasi** (tabel ini) serta *health check* endpoint (`/api/health`).
+
+---
+
+###  Uji Coba Akhir (Checklist)
+
+| No | Kriteria Uji | Status |
+|:--:|:-----------------------------|:-------:|
+| 1 | Semua endpoint berjalan dan sesuai metode HTTP | ✅ |
+| 2 | Status code sesuai | ✅ |
+| 3 | Validasi input berjalan | ✅ |
+| 4 | Format response konsisten (`success`, `message`, `data`) | ✅ |
+| 5 | Error tampil rapi | ✅ |
+| 6 | Ada dokumentasi endpoint (README ini) | ✅ |
+
+---
